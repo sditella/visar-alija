@@ -1,16 +1,11 @@
 export const runtime = "nodejs"
 
 import { NextResponse } from "next/server"
-import { createClient } from "@supabase/supabase-js"
+import { createClient } from "@/lib/db"
 import { cookies } from "next/headers"
 
-function getSupabase() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!url || !key) {
-    throw new Error(`Missing Supabase env vars: url=${!!url}, key=${!!key}`)
-  }
-  return createClient(url, key)
+function getDB() {
+  return createClient("", "")
 }
 
 async function verifyAdmin() {
@@ -18,7 +13,7 @@ async function verifyAdmin() {
   const token = cookieStore.get("admin_session")?.value
   if (!token) return false
 
-  const supabase = getSupabase()
+  const supabase = getDB()
   const { data: session } = await supabase
     .from("admin_sessions")
     .select("id")
@@ -35,7 +30,7 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
-  const supabase = getSupabase()
+  const supabase = getDB()
   const { data: leads, error } = await supabase
     .from("leads")
     .select("*")
@@ -75,7 +70,7 @@ export async function PATCH(req: Request) {
     return NextResponse.json({ error: "Nothing to update" }, { status: 400 })
   }
 
-  const supabase = getSupabase()
+  const supabase = getDB()
   const { error } = await supabase
     .from("leads")
     .update(updateData)
@@ -101,7 +96,7 @@ export async function DELETE(req: Request) {
     return NextResponse.json({ error: "ID required" }, { status: 400 })
   }
 
-  const supabase = getSupabase()
+  const supabase = getDB()
   const { error } = await supabase.from("leads").delete().eq("id", id)
 
   if (error) {

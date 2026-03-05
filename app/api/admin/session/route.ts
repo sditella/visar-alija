@@ -1,16 +1,11 @@
 export const runtime = "nodejs"
 
 import { NextResponse } from "next/server"
-import { createClient } from "@supabase/supabase-js"
+import { createClient } from "@/lib/db"
 import { cookies } from "next/headers"
 
-function getSupabase() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!url || !key) {
-    throw new Error(`Missing Supabase env vars: url=${!!url}, key=${!!key}`)
-  }
-  return createClient(url, key)
+function getDB() {
+  return createClient("", "")
 }
 
 export async function GET() {
@@ -22,10 +17,10 @@ export async function GET() {
       return NextResponse.json({ authenticated: false }, { status: 401 })
     }
 
-    const supabase = getSupabase()
-    const { data: session } = await supabase
+    const db = getDB()
+    const { data: session } = await db
       .from("admin_sessions")
-      .select("*, admin_users(username)")
+      .select("user_id")
       .eq("token", token)
       .gte("expires_at", new Date().toISOString())
       .single()
@@ -34,9 +29,15 @@ export async function GET() {
       return NextResponse.json({ authenticated: false }, { status: 401 })
     }
 
+    const { data: user } = await db
+      .from("admin_users")
+      .select("username")
+      .eq("id", (session as { user_id: string }).user_id)
+      .single()
+
     return NextResponse.json({
       authenticated: true,
-      username: session.admin_users?.username,
+      username: (user as { username?: string } | null)?.username,
     })
   } catch {
     return NextResponse.json({ authenticated: false }, { status: 401 })
@@ -49,8 +50,8 @@ export async function DELETE() {
     const token = cookieStore.get("admin_session")?.value
 
     if (token) {
-      const supabase = getSupabase()
-      await supabase.from("admin_sessions").delete().eq("token", token)
+      const db = getDB()
+      await db.from("admin_sessions").delete().eq("token", token)
       cookieStore.delete("admin_session")
     }
 

@@ -1,16 +1,11 @@
 export const runtime = "nodejs"
 
 import { NextResponse } from "next/server"
-import { createClient } from "@supabase/supabase-js"
+import { createClient } from "@/lib/db"
 import { cookies } from "next/headers"
 
-function getSupabase() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!url || !key) {
-    throw new Error(`Missing Supabase env vars: url=${!!url}, key=${!!key}`)
-  }
-  return createClient(url, key)
+function getDB() {
+  return createClient("", "")
 }
 
 export async function POST(req: Request) {
@@ -28,7 +23,7 @@ export async function POST(req: Request) {
     const bcrypt = await import("bcryptjs")
     const crypto = await import("crypto")
 
-    const supabase = getSupabase()
+    const supabase = getDB()
 
     // Auto-seed: check if xadmin exists, if not create it
     const { data: existingAdmin } = await supabase

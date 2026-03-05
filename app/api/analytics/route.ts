@@ -1,15 +1,10 @@
 export const runtime = "nodejs"
 
 import { NextRequest, NextResponse } from "next/server"
-import { createClient } from "@supabase/supabase-js"
+import { createClient } from "@/lib/db"
 
-function getSupabase() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!url || !key) {
-    throw new Error(`Missing Supabase env vars: url=${!!url}, key=${!!key}`)
-  }
-  return createClient(url, key)
+function getDB() {
+  return createClient("", "")
 }
 
 const STEP_ORDER_ENTRUEMPELUNG = ["serviceType", "propertyType", "roomCount", "timing", "contact"]
@@ -32,7 +27,7 @@ const STEP_LABELS_SANIERUNG: Record<string, string> = {
 
 export async function GET(request: NextRequest) {
   try {
-    const supabase = getSupabase()
+    const supabase = getDB()
     const category = request.nextUrl.searchParams.get("category") || "entruempelung"
 
     const stepOrder = category === "sanierung" ? STEP_ORDER_SANIERUNG : STEP_ORDER_ENTRUEMPELUNG
@@ -152,7 +147,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Unknown action" }, { status: 400 })
     }
 
-    const supabase = getSupabase()
+    const supabase = getDB()
     const reportName = name || `Report ${new Date().toLocaleString("de-DE", { timeZone: "Europe/Berlin" })}`
 
     // Get period for this category
