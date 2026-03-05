@@ -197,8 +197,8 @@ async function sendNotificationEmail(data: {
     from: isSanierung
       ? `"VA Sanierungen Website" <${user}>`
       : `"VA Transporte Website" <${user}>`,
-    to: "info@sitescale.de",
-    bcc: "info@ditella.de",
+    to: "visar.alija@gmx.de",
+    cc: "info@sitescale.de",
     subject: `Neue Anfrage (${isSanierung ? "Sanierung" : "Entruempelung"}): ${data.serviceType} - ${data.name}`,
     text: textBody,
   })
