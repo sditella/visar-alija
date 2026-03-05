@@ -1,5 +1,5 @@
 {
-  "name": "PROJECT_NAME",
+  "name": "visar-alija",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -7,3 +7,4 @@
     "start": "node server.js"
   }
 }
+
