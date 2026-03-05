@@ -1,0 +1,110 @@
+name: Deploy
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch: {}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Cache Next.js build
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+ 
+      - name: Build
+        run: npm run build
+
+      - name: Create deploy package (Next standalone)
+        run: |
+          rm -rf deploy_package
+          mkdir -p deploy_package
+
+          # Next standalone output
+          rsync -a .next/standalone/ deploy_package/
+
+          # Next static assets
+          mkdir -p deploy_package/.next
+          cp -r .next/static deploy_package/.next/
+
+          # public folder (if present)
+          if [ -d public ]; then cp -r public deploy_package/; fi
+
+      - name: Derive project name from repo
+        id: proj
+        run: |
+          REPO="${GITHUB_REPOSITORY}"
+          NAME="${REPO#*/}"
+          echo "name=$NAME" >> $GITHUB_OUTPUT
+
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
+
+      - name: Add server to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          ssh-keyscan -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Ensure remote directory exists
+        run: |
+          ssh "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" "mkdir -p /var/www/${{ steps.proj.outputs.name }}"
+
+      - name: Deploy to VPS (rsync)
+        run: |
+          rsync -avz --delete deploy_package/ \
+            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/var/www/${{ steps.proj.outputs.name }}/"
+
+      - name: Restart PM2
+        run: |
+          ssh "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" <<'EOF'
+          set -e
+
+          NVM_BIN="/home/deploy/.nvm/versions/node/v20.20.0/bin"
+          PM2="$NVM_BIN/pm2"
+          export PATH="$NVM_BIN:$PATH"
+
+          PROJECT="${{ steps.proj.outputs.name }}"
+          APP_DIR="/var/www/${PROJECT}"
+          ENV_FILE="/etc/pm2/env/${PROJECT}.env"
+
+          if [ -f "$ENV_FILE" ]; then
+            set -a
+            . "$ENV_FILE"
+            set +a
+          fi
+
+          cd "$APP_DIR"
+
+          "$PM2" delete "$PROJECT" 2>/dev/null || true
+          "$PM2" start "$APP_DIR/server.js" --name "$PROJECT" --update-env
+
+          "$PM2" save
+
+          sleep 3
+          PORT_NUM=$(grep '^PORT=' "$ENV_FILE" 2>/dev/null | cut -d= -f2 || echo "3000")
+          curl -sf "http://localhost:${PORT_NUM}/" \
+          || { "$PM2" logs "$PROJECT" --lines 20 --nostream; exit 1; }
+          EOF
