@@ -38,6 +38,8 @@ jobs:
  
       - name: Build
         run: pnpm build
+        env:
+          NEXT_PUBLIC_META_PIXEL_ID: ${{ secrets.NEXT_PUBLIC_META_PIXEL_ID }}
 
       - name: Create deploy package (Next standalone)
         run: |
