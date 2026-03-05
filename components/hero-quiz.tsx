@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import Image from "next/image"
 import { Phone, MessageCircle, Star, Shield, Clock, CheckCircle2 } from "lucide-react"
@@ -20,7 +20,7 @@ export function HeroQuiz() {
         <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-white/10">
           <Image
             src="/images/logo.png"
-            alt="Momo Entrümpelung Logo"
+            alt="VA Transporte Logo"
             width={140}
             height={42}
             className="h-9 w-auto"
@@ -28,7 +28,7 @@ export function HeroQuiz() {
           />
           <div className="flex items-center gap-3">
             <a
-              href="https://wa.me/491736151556?text=Hallo%2C%20ich%20h%C3%A4tte%20gerne%20ein%20Angebot."
+              href="https://wa.me/491799173390?text=Hallo%2C%20ich%20h%C3%A4tte%20gerne%20ein%20Angebot."
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center w-8 h-8 rounded-full transition-colors hover:bg-white/10"
@@ -38,11 +38,11 @@ export function HeroQuiz() {
               <MessageCircle className="w-5 h-5" style={{ color: "#25D366" }} />
             </a>
             <a
-              href="tel:+491736151556"
+              href="tel:+491799173390"
               className="flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm font-medium"
             >
-              <Phone className="w-4 h-4" style={{ color: "#EFA609" }} />
-              <span className="hidden sm:inline">0173 6151 556</span>
+              <Phone className="w-4 h-4" style={{ color: "#EF1C23" }} />
+              <span className="hidden sm:inline">0179 9173 390</span>
             </a>
           </div>
         </div>
@@ -57,7 +57,7 @@ export function HeroQuiz() {
                 {/* Hook above quiz on mobile */}
                 <div className="lg:hidden mb-4 text-center">
                   <h1 className="text-2xl font-bold text-white leading-tight text-balance">
-                    Entrümpelung <span style={{ color: "#EFA609" }}>leicht gemacht.</span>
+                    Entrümpelung <span style={{ color: "#EF1C23" }}>leicht gemacht.</span>
                   </h1>
                   <p className="text-sm text-white/70 mt-1">
                     Kostenlos & unverbindlich — in 2 Minuten zum Festpreis-Angebot
@@ -70,7 +70,7 @@ export function HeroQuiz() {
               <div className="hidden lg:flex order-last lg:order-first flex-col justify-center">
                 <div
                   className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-6 self-start"
-                  style={{ backgroundColor: "rgba(239,166,9,0.15)", color: "#EFA609" }}
+                  style={{ backgroundColor: "rgba(239,28,35,0.15)", color: "#EF1C23" }}
                 >
                   <Star className="w-3 h-3 fill-current" />
                   Festpreisgarantie &ndash; keine versteckten Kosten
@@ -82,7 +82,7 @@ export function HeroQuiz() {
                 >
                   Entrümpelung
                   <br />
-                  <span style={{ color: "#EFA609" }}>leicht gemacht.</span>
+                  <span style={{ color: "#EF1C23" }}>leicht gemacht.</span>
                 </h1>
 
                 <p className="text-lg text-white/70 leading-relaxed mb-8 max-w-md">
@@ -96,7 +96,7 @@ export function HeroQuiz() {
                     { icon: <CheckCircle2 className="w-4 h-4" />, text: "100% Kundenzufriedenheit" },
                   ].map((item) => (
                     <div key={item.text} className="flex items-center gap-3 text-white/80 text-sm">
-                      <div style={{ color: "#EFA609" }}>{item.icon}</div>
+                      <div style={{ color: "#EF1C23" }}>{item.icon}</div>
                       {item.text}
                     </div>
                   ))}
@@ -106,7 +106,7 @@ export function HeroQuiz() {
                 <div className="flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-current" style={{ color: "#EFA609" }} />
+                      <Star key={i} className="w-4 h-4 fill-current" style={{ color: "#EF1C23" }} />
                     ))}
                   </div>
                   <div>

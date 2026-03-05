@@ -1,4 +1,4 @@
-import { Star, Users, TrendingUp, ThumbsUp } from "lucide-react"
+﻿import { Star, Users, TrendingUp, ThumbsUp } from "lucide-react"
 
 const stats = [
   {
@@ -27,7 +27,7 @@ export function TrustBar() {
   return (
     <section
       className="py-5 border-b border-border"
-      style={{ backgroundColor: "#EFA609" }}
+      style={{ backgroundColor: "#EF1C23" }}
     >
       <div className="mx-auto max-w-5xl px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -36,19 +36,19 @@ export function TrustBar() {
               key={stat.label}
               className="flex items-center gap-3 justify-center"
             >
-              <div className="flex-shrink-0" style={{ color: "#1a1000", opacity: 0.7 }}>
+              <div className="flex-shrink-0" style={{ color: "#ffffff", opacity: 0.7 }}>
                 {stat.icon}
               </div>
               <div>
                 <div
                   className="text-lg font-bold leading-none"
-                  style={{ color: "#1a1000" }}
+                  style={{ color: "#ffffff" }}
                 >
                   {stat.value}
                 </div>
                 <div
                   className="text-xs font-medium mt-0.5"
-                  style={{ color: "#1a1000", opacity: 0.7 }}
+                  style={{ color: "#ffffff", opacity: 0.7 }}
                 >
                   {stat.label}
                 </div>

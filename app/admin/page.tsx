@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useEffect, useState, useCallback, useRef } from "react"
 import { useRouter } from "next/navigation"
@@ -41,7 +41,7 @@ type Lead = {
 }
 
 const STATUSES = [
-  { key: "new", label: "Neuer Lead", color: "#EFA609", bg: "rgba(239,166,9,0.1)" },
+  { key: "new", label: "Neuer Lead", color: "#EF1C23", bg: "rgba(239,28,35,0.1)" },
   { key: "contacted", label: "Kontaktiert", color: "#3b82f6", bg: "rgba(59,130,246,0.1)" },
   { key: "appointment", label: "Termin vereinbart", color: "#8b5cf6", bg: "rgba(139,92,246,0.1)" },
   { key: "unreachable", label: "Nicht erreicht", color: "#ef4444", bg: "rgba(239,68,68,0.1)" },
@@ -167,7 +167,7 @@ function LeadCard({
           <select
             value={lead.status}
             onChange={(e) => onStatusChange(lead.id, e.target.value)}
-            className="text-xs border border-border rounded-md px-2 py-1 bg-card text-foreground focus:outline-none focus:ring-1 focus:ring-[#EFA609]"
+            className="text-xs border border-border rounded-md px-2 py-1 bg-card text-foreground focus:outline-none focus:ring-1 focus:ring-[#EF1C23]"
           >
             {STATUSES.map((s) => (
               <option key={s.key} value={s.key}>
@@ -190,7 +190,7 @@ function LeadCard({
             onClick={() => setShowNotes(!showNotes)}
             className={cn(
               "p-1 rounded-md hover:bg-secondary transition-colors",
-              localNotes ? "text-[#EFA609]" : "text-muted-foreground"
+              localNotes ? "text-[#EF1C23]" : "text-muted-foreground"
             )}
             title="Notizen"
           >
@@ -212,13 +212,13 @@ function LeadCard({
         <div className="mt-2 pt-2 border-t border-border">
           <div className="flex items-center justify-between mb-1">
             <span className="text-[10px] font-semibold text-muted-foreground">Notizen</span>
-            {saving && <span className="text-[10px] text-[#EFA609]">Speichert...</span>}
+            {saving && <span className="text-[10px] text-[#EF1C23]">Speichert...</span>}
           </div>
           <textarea
             value={localNotes}
             onChange={(e) => handleNotesChange(e.target.value)}
             placeholder="Notiz hinzufuegen..."
-            className="w-full text-xs p-2 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-[#EFA609] resize-none"
+            className="w-full text-xs p-2 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-[#EF1C23] resize-none"
             rows={3}
           />
         </div>
@@ -262,10 +262,10 @@ function ListNotes({
         value={localNotes}
         onChange={(e) => handleChange(e.target.value)}
         placeholder="Notiz..."
-        className="w-full text-xs px-2 py-1 rounded-md border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-[#EFA609]"
+        className="w-full text-xs px-2 py-1 rounded-md border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-[#EF1C23]"
       />
       {saving && (
-        <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] text-[#EFA609]">...</span>
+        <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] text-[#EF1C23]">...</span>
       )}
     </div>
   )
@@ -356,7 +356,7 @@ export default function AdminDashboard() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
-        <Loader2 className="w-8 h-8 animate-spin" style={{ color: "#EFA609" }} />
+        <Loader2 className="w-8 h-8 animate-spin" style={{ color: "#EF1C23" }} />
       </div>
     )
   }
@@ -382,7 +382,7 @@ export default function AdminDashboard() {
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value as "entruempelung" | "sanierung")}
-              className="text-xs border border-border rounded-lg px-3 py-1.5 bg-card text-foreground font-semibold focus:outline-none focus:ring-2 focus:ring-[#EFA609]/50"
+              className="text-xs border border-border rounded-lg px-3 py-1.5 bg-card text-foreground font-semibold focus:outline-none focus:ring-2 focus:ring-[#EF1C23]/50"
             >
               <option value="entruempelung">Entruempelung</option>
               <option value="sanierung">Sanierung</option>
@@ -464,7 +464,7 @@ export default function AdminDashboard() {
             className={cn(
               "flex-1 py-2 text-xs font-medium text-center transition-colors",
               activeTab === "leads"
-                ? "text-foreground border-b-2 border-[#EFA609]"
+                ? "text-foreground border-b-2 border-[#EF1C23]"
                 : "text-muted-foreground"
             )}
           >
@@ -475,7 +475,7 @@ export default function AdminDashboard() {
             className={cn(
               "flex-1 py-2 text-xs font-medium text-center transition-colors",
               activeTab === "analytics"
-                ? "text-foreground border-b-2 border-[#EFA609]"
+                ? "text-foreground border-b-2 border-[#EF1C23]"
                 : "text-muted-foreground"
             )}
           >
@@ -525,13 +525,13 @@ export default function AdminDashboard() {
               placeholder="Leads durchsuchen (Name, E-Mail, Telefon, Ort)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border bg-card text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#EFA609]/50 focus:border-[#EFA609] transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border bg-card text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#EF1C23]/50 focus:border-[#EF1C23] transition-colors"
             />
           </div>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-4 py-2.5 rounded-xl border border-border bg-card text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#EFA609]/50 focus:border-[#EFA609] transition-colors sm:w-52"
+            className="px-4 py-2.5 rounded-xl border border-border bg-card text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#EF1C23]/50 focus:border-[#EF1C23] transition-colors sm:w-52"
           >
             <option value="all">Alle Status</option>
             {STATUSES.map((s) => (
@@ -694,7 +694,7 @@ export default function AdminDashboard() {
                             onChange={(e) =>
                               updateStatus(lead.id, e.target.value)
                             }
-                            className="text-xs border border-border rounded-md px-2 py-1 bg-card text-foreground focus:outline-none focus:ring-1 focus:ring-[#EFA609]"
+                            className="text-xs border border-border rounded-md px-2 py-1 bg-card text-foreground focus:outline-none focus:ring-1 focus:ring-[#EF1C23]"
                           >
                             {STATUSES.map((s) => (
                               <option key={s.key} value={s.key}>

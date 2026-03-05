@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useState, useCallback, useEffect, useRef } from "react"
 import {
@@ -58,14 +58,14 @@ function ProgressBar({ current, total }: { current: number; total: number }) {
         <span className="text-xs font-medium text-muted-foreground">
           Schritt {current} von {total}
         </span>
-        <span className="text-xs font-bold" style={{ color: "#EFA609" }}>
+        <span className="text-xs font-bold" style={{ color: "#EF1C23" }}>
           {Math.round(pct)}%
         </span>
       </div>
-      <div className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: "rgba(239,166,9,0.15)" }}>
+      <div className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: "rgba(239,28,35,0.15)" }}>
         <div
           className="h-full rounded-full transition-all duration-500 ease-out"
-          style={{ width: `${pct}%`, backgroundColor: "#EFA609" }}
+          style={{ width: `${pct}%`, backgroundColor: "#EF1C23" }}
         />
       </div>
     </div>
@@ -90,8 +90,8 @@ function OptionCard({
       className={cn(
         "flex items-center gap-3 w-full p-3.5 rounded-xl border-2 text-left transition-all duration-200",
         selected
-          ? "border-[#EFA609] bg-[#EFA609]/5 shadow-sm"
-          : "border-border bg-card hover:border-[#EFA609]/40 hover:bg-accent"
+          ? "border-[#EF1C23] bg-[#EF1C23]/5 shadow-sm"
+          : "border-border bg-card hover:border-[#EF1C23]/40 hover:bg-accent"
       )}
     >
       {icon && (
@@ -99,7 +99,7 @@ function OptionCard({
           className={cn(
             "flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-colors",
             selected
-              ? "bg-[#EFA609]/20 text-[#EFA609]"
+              ? "bg-[#EF1C23]/20 text-[#EF1C23]"
               : "bg-secondary text-muted-foreground"
           )}
         >
@@ -115,7 +115,7 @@ function OptionCard({
         {label}
       </span>
       {selected && (
-        <CheckCircle2 className="w-5 h-5 flex-shrink-0" style={{ color: "#EFA609" }} />
+        <CheckCircle2 className="w-5 h-5 flex-shrink-0" style={{ color: "#EF1C23" }} />
       )}
     </button>
   )
@@ -273,9 +273,9 @@ export function SanierungQuiz() {
       <div className="bg-card rounded-2xl border border-border p-6 sm:p-8 text-center shadow-xl">
         <div
           className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5"
-          style={{ backgroundColor: "rgba(239,166,9,0.1)" }}
+          style={{ backgroundColor: "rgba(239,28,35,0.1)" }}
         >
-          <CheckCircle2 className="w-8 h-8" style={{ color: "#EFA609" }} />
+          <CheckCircle2 className="w-8 h-8" style={{ color: "#EF1C23" }} />
         </div>
         <h2
           className="text-xl sm:text-2xl font-bold text-foreground mb-3"
@@ -288,16 +288,16 @@ export function SanierungQuiz() {
           24 Stunden bei Ihnen mit einem individuellen Angebot.
         </p>
         <div className="flex flex-col gap-3">
-          <a href="tel:+491736151556" className="w-full">
+          <a href="tel:+491799173390" className="w-full">
             <Button
               className="w-full font-semibold text-sm py-5"
-              style={{ backgroundColor: "#EFA609", color: "#1a1000" }}
+              style={{ backgroundColor: "#EF1C23", color: "#ffffff" }}
             >
-              Jetzt anrufen: 0173 6151 556
+              Jetzt anrufen: 0179 9173 390
             </Button>
           </a>
           <a
-            href="https://wa.me/491736151556?text=Hallo%2C%20ich%20habe%20gerade%20eine%20Sanierungsanfrage%20%C3%BCber%20Ihre%20Website%20gestellt."
+            href="https://wa.me/491799173390?text=Hallo%2C%20ich%20habe%20gerade%20eine%20Sanierungsanfrage%20%C3%BCber%20Ihre%20Website%20gestellt."
             target="_blank"
             rel="noopener noreferrer"
             className="w-full"
@@ -458,7 +458,7 @@ export function SanierungQuiz() {
                   placeholder="Ihr vollstaendiger Name"
                   value={data.name}
                   onChange={(e) => update("name", e.target.value)}
-                  className="w-full rounded-lg border border-input bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#EFA609]/50 focus:border-[#EFA609] transition-colors"
+                  className="w-full rounded-lg border border-input bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#EF1C23]/50 focus:border-[#EF1C23] transition-colors"
                 />
               </div>
               <div>
@@ -469,7 +469,7 @@ export function SanierungQuiz() {
                   <input
                     id="san-phone"
                     type="tel"
-                    placeholder="z.B. 0173 6151556"
+                    placeholder="z.B. 0179 9173390"
                     value={data.phone}
                     onChange={(e) => {
                       update("phone", e.target.value)
@@ -482,7 +482,7 @@ export function SanierungQuiz() {
                         ? "border-destructive focus:ring-destructive/50 focus:border-destructive"
                         : phoneValidation.status === "valid"
                         ? "border-green-500 focus:ring-green-500/50 focus:border-green-500"
-                        : "border-input focus:ring-[#EFA609]/50 focus:border-[#EFA609]"
+                        : "border-input focus:ring-[#EF1C23]/50 focus:border-[#EF1C23]"
                     )}
                   />
                   <div className="absolute right-3 top-1/2 -translate-y-1/2">
@@ -514,7 +514,7 @@ export function SanierungQuiz() {
                   placeholder="Ihre E-Mail-Adresse"
                   value={data.email}
                   onChange={(e) => update("email", e.target.value)}
-                  className="w-full rounded-lg border border-input bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#EFA609]/50 focus:border-[#EFA609] transition-colors"
+                  className="w-full rounded-lg border border-input bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#EF1C23]/50 focus:border-[#EF1C23] transition-colors"
                 />
               </div>
               <div>
@@ -527,7 +527,7 @@ export function SanierungQuiz() {
                   placeholder="z.B. 68642 Buerstadt"
                   value={data.city}
                   onChange={(e) => update("city", e.target.value)}
-                  className="w-full rounded-lg border border-input bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#EFA609]/50 focus:border-[#EFA609] transition-colors"
+                  className="w-full rounded-lg border border-input bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#EF1C23]/50 focus:border-[#EF1C23] transition-colors"
                 />
               </div>
             </div>
@@ -568,8 +568,8 @@ export function SanierungQuiz() {
             size="sm"
             className="font-semibold px-6"
             style={{
-              backgroundColor: canProceed() ? "#EFA609" : undefined,
-              color: canProceed() ? "#1a1000" : undefined,
+              backgroundColor: canProceed() ? "#EF1C23" : undefined,
+              color: canProceed() ? "#ffffff" : undefined,
             }}
           >
             Weiter
@@ -583,8 +583,8 @@ export function SanierungQuiz() {
             size="sm"
             className="font-semibold px-6"
             style={{
-              backgroundColor: canProceed() && !submitting ? "#EFA609" : undefined,
-              color: canProceed() && !submitting ? "#1a1000" : undefined,
+              backgroundColor: canProceed() && !submitting ? "#EF1C23" : undefined,
+              color: canProceed() && !submitting ? "#ffffff" : undefined,
             }}
           >
             {submitting ? (

@@ -7,7 +7,7 @@ const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const username = "xadmin";
-const password = "MoMo2026!";
+const password = "ViSar2026!";
 
 const salt = bcrypt.genSaltSync(12);
 const hash = bcrypt.hashSync(password, salt);

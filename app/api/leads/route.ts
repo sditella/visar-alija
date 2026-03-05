@@ -161,8 +161,8 @@ async function sendNotificationEmail(data: {
   ].includes(data.serviceType)
 
   const header = isSanierung
-    ? "=== NEUE ANFRAGE - MOMO SANIERUNG ==="
-    : "=== NEUE ANFRAGE - MOMO ENTRUEMPELUNG ==="
+    ? "=== NEUE ANFRAGE - VA SANIERUNGEN ==="
+    : "=== NEUE ANFRAGE - VA TRANSPORTE ==="
 
   const detailLines = [
     `Dienstleistung:       ${data.serviceType}`,
@@ -195,9 +195,9 @@ async function sendNotificationEmail(data: {
 
   await transporter.sendMail({
     from: isSanierung
-      ? `"Momo Sanierung Website" <${user}>`
-      : `"Momo Entruempelung Website" <${user}>`,
-    to: "info@momo-entruempelung.de",
+      ? `"VA Sanierungen Website" <${user}>`
+      : `"VA Transporte Website" <${user}>`,
+    to: "info@sitescale.de",
     bcc: "info@ditella.de",
     subject: `Neue Anfrage (${isSanierung ? "Sanierung" : "Entruempelung"}): ${data.serviceType} - ${data.name}`,
     text: textBody,

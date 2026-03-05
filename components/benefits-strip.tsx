@@ -1,4 +1,4 @@
-import { Shield, Clock, Banknote, Recycle, Truck, Sparkles } from "lucide-react"
+﻿import { Shield, Clock, Banknote, Recycle, Truck, Sparkles } from "lucide-react"
 
 const benefits = [
   {
@@ -43,7 +43,7 @@ export function BenefitsStrip() {
             style={{ fontFamily: "var(--font-heading)" }}
           >
             Warum{" "}
-            <span style={{ color: "#EFA609" }}>Momo Entrümpelung</span>?
+            <span style={{ color: "#EF1C23" }}>VA Transporte</span>?
           </h2>
           <p className="text-sm text-muted-foreground mt-2 max-w-lg mx-auto">
             Professionell, transparent und zuverlässig &ndash; seit über 9 Jahren.
@@ -58,7 +58,7 @@ export function BenefitsStrip() {
             >
               <div
                 className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center"
-                style={{ backgroundColor: "rgba(239,166,9,0.1)", color: "#EFA609" }}
+                style={{ backgroundColor: "rgba(239,28,35,0.1)", color: "#EF1C23" }}
               >
                 {b.icon}
               </div>

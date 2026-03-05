@@ -12,7 +12,7 @@ if (!supabaseUrl || !supabaseKey) {
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 async function main() {
-  const password = "MoMo2026!";
+  const password = "ViSar2026!";
   const hash = await bcrypt.hash(password, 12);
   console.log("Generated hash:", hash);
 

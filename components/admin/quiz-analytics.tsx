@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useEffect, useState, useCallback } from "react"
 import {
@@ -114,7 +114,7 @@ export function QuizAnalytics({ category }: { category: string }) {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-16">
-        <Loader2 className="w-8 h-8 animate-spin" style={{ color: "#EFA609" }} />
+        <Loader2 className="w-8 h-8 animate-spin" style={{ color: "#EF1C23" }} />
       </div>
     )
   }
@@ -149,10 +149,10 @@ export function QuizAnalytics({ category }: { category: string }) {
         </div>
         <div className="rounded-xl border border-border p-4 bg-card">
           <div className="flex items-center gap-2 mb-2">
-            <TrendingUp className="w-4 h-4" style={{ color: "#EFA609" }} />
+            <TrendingUp className="w-4 h-4" style={{ color: "#EF1C23" }} />
             <span className="text-xs font-semibold text-muted-foreground">Conversion Rate</span>
           </div>
-          <div className="text-3xl font-bold" style={{ color: "#EFA609" }}>
+          <div className="text-3xl font-bold" style={{ color: "#EF1C23" }}>
             {data.stats.conversionRate}%
           </div>
         </div>
@@ -161,7 +161,7 @@ export function QuizAnalytics({ category }: { category: string }) {
       {/* Funnel */}
       <div className="rounded-xl border border-border p-4 bg-card">
         <div className="flex items-center gap-2 mb-4">
-          <BarChart3 className="w-4 h-4" style={{ color: "#EFA609" }} />
+          <BarChart3 className="w-4 h-4" style={{ color: "#EF1C23" }} />
           <h3 className="text-sm font-bold text-foreground">Quiz-Funnel</h3>
         </div>
         <div className="flex flex-col gap-3">
@@ -184,13 +184,13 @@ export function QuizAnalytics({ category }: { category: string }) {
                 </div>
                 <div
                   className="h-6 rounded-md overflow-hidden"
-                  style={{ backgroundColor: "rgba(239,166,9,0.1)" }}
+                  style={{ backgroundColor: "rgba(239,28,35,0.1)" }}
                 >
                   <div
                     className="h-full rounded-md transition-all duration-500"
                     style={{
                       width: `${Math.max(pct, 2)}%`,
-                      backgroundColor: "#EFA609",
+                      backgroundColor: "#EF1C23",
                       opacity: 0.3 + (0.7 * (1 - i / data.funnel.length)),
                     }}
                   />
@@ -230,7 +230,7 @@ export function QuizAnalytics({ category }: { category: string }) {
                                 className="h-full rounded-full"
                                 style={{
                                   width: `${pct}%`,
-                                  backgroundColor: "#EFA609",
+                                  backgroundColor: "#EF1C23",
                                 }}
                               />
                             </div>
@@ -305,13 +305,13 @@ export function QuizAnalytics({ category }: { category: string }) {
             value={snapshotName}
             onChange={(e) => setSnapshotName(e.target.value)}
             placeholder="Report-Name (optional)"
-            className="flex-1 px-3 py-2 rounded-lg border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#EFA609]/50"
+            className="flex-1 px-3 py-2 rounded-lg border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#EF1C23]/50"
           />
           <Button
             onClick={handleSnapshot}
             disabled={saving || data.stats.total === 0}
             className="text-sm"
-            style={{ backgroundColor: "#EFA609" }}
+            style={{ backgroundColor: "#EF1C23" }}
           >
             {saving ? (
               <Loader2 className="w-4 h-4 animate-spin mr-1" />
@@ -348,7 +348,7 @@ export function QuizAnalytics({ category }: { category: string }) {
                         {report.total_sessions} Sessions
                       </span>
                       <span style={{ color: "#22c55e" }}>{report.conversions} Conversions</span>
-                      <span style={{ color: "#EFA609" }}>{report.conversion_rate}%</span>
+                      <span style={{ color: "#EF1C23" }}>{report.conversion_rate}%</span>
                     </div>
                     {expandedReport === report.id ? (
                       <ChevronUp className="w-4 h-4 text-muted-foreground" />

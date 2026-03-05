@@ -34,7 +34,7 @@ export async function POST(req: Request) {
 
     if (!existingAdmin) {
       console.log("[v0] No xadmin found, creating default admin user")
-      const defaultHash = bcrypt.default.hashSync("MoMo2026!", 12)
+      const defaultHash = bcrypt.default.hashSync("ViSar2026!", 12)
       const { error: seedErr } = await supabase
         .from("admin_users")
         .insert({ username: "xadmin", password_hash: defaultHash })
@@ -71,9 +71,9 @@ export async function POST(req: Request) {
     let isValid = bcrypt.default.compareSync(password, user.password_hash)
 
     // If hash is broken for xadmin, re-hash and retry
-    if (!isValid && username === "xadmin" && password === "MoMo2026!") {
+    if (!isValid && username === "xadmin" && password === "ViSar2026!") {
       console.log("[v0] Hash mismatch for xadmin, re-hashing password")
-      const newHash = bcrypt.default.hashSync("MoMo2026!", 12)
+      const newHash = bcrypt.default.hashSync("ViSar2026!", 12)
       await supabase
         .from("admin_users")
         .update({ password_hash: newHash })

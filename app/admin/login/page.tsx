@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
@@ -45,9 +45,9 @@ export default function AdminLoginPage() {
           <div className="flex items-center justify-center mb-6">
             <div
               className="w-12 h-12 rounded-xl flex items-center justify-center"
-              style={{ backgroundColor: "rgba(239,166,9,0.15)" }}
+              style={{ backgroundColor: "rgba(239,28,35,0.15)" }}
             >
-              <Lock className="w-6 h-6" style={{ color: "#EFA609" }} />
+              <Lock className="w-6 h-6" style={{ color: "#EF1C23" }} />
             </div>
           </div>
 
@@ -58,7 +58,7 @@ export default function AdminLoginPage() {
             Admin Login
           </h1>
           <p className="text-sm text-muted-foreground text-center mb-6">
-            Momo Entrümpelung Dashboard
+            VA Transporte Dashboard
           </p>
 
           <form onSubmit={handleLogin} className="flex flex-col gap-4">
@@ -74,7 +74,7 @@ export default function AdminLoginPage() {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full rounded-lg border border-input bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#EFA609]/50 focus:border-[#EFA609] transition-colors"
+                className="w-full rounded-lg border border-input bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#EF1C23]/50 focus:border-[#EF1C23] transition-colors"
                 placeholder="Benutzername"
                 autoComplete="username"
                 required
@@ -92,7 +92,7 @@ export default function AdminLoginPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-lg border border-input bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#EFA609]/50 focus:border-[#EFA609] transition-colors"
+                className="w-full rounded-lg border border-input bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#EF1C23]/50 focus:border-[#EF1C23] transition-colors"
                 placeholder="Passwort"
                 autoComplete="current-password"
                 required
@@ -109,7 +109,7 @@ export default function AdminLoginPage() {
               type="submit"
               disabled={loading || !username || !password}
               className="w-full font-semibold py-5"
-              style={{ backgroundColor: "#EFA609", color: "#1a1000" }}
+              style={{ backgroundColor: "#EF1C23", color: "#ffffff" }}
             >
               {loading ? (
                 <>

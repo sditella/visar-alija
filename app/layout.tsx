@@ -1,6 +1,5 @@
-import type { Metadata, Viewport } from 'next'
+﻿import type { Metadata, Viewport } from 'next'
 import { Inter, DM_Sans } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import Script from 'next/script'
 import './globals.css'
 
@@ -8,15 +7,15 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 
 export const viewport: Viewport = {
-  themeColor: '#EFA609',
+  themeColor: '#EF1C23',
   width: 'device-width',
   initialScale: 1,
 }
 
 export const metadata: Metadata = {
-  title: 'Momo Entruempelung - Professionelle Entruempelung & Haushaltsaufloesung',
-  description: 'Momo Entruempelung in Buerstadt - Professionelle Entruempelung, Haushaltsaufloesung und Sperrmuellentsorgung. Kostenlose Besichtigung & Festpreisgarantie. Jetzt anfragen!',
-  keywords: ['Entruempelung', 'Haushaltsaufloesung', 'Buerstadt', 'Sperrmuell', 'Wohnungsaufloesung', 'Momo Entruempelung'],
+  title: 'VA Transporte - Professionelle Entruempelung & Haushaltsaufloesung',
+  description: 'VA Transporte in Germering - Professionelle Entruempelung, Haushaltsaufloesung und Sperrmuellentsorgung. Kostenlose Besichtigung & Festpreisgarantie. Jetzt anfragen!',
+  keywords: ['Entruempelung', 'Haushaltsaufloesung', 'Germering', 'Sperrmuell', 'Wohnungsaufloesung', 'VA Transporte'],
 }
 
 export default function RootLayout({
@@ -57,7 +56,6 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${dmSans.variable} font-sans antialiased`}>
         {children}
-        <Analytics />
       </body>
     </html>
   )

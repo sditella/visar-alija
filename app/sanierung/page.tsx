@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+﻿import type { Metadata } from "next"
 import { HeroSanierung } from "@/components/hero-sanierung"
 import { TrustBar } from "@/components/trust-bar"
 import { MiniFooter } from "@/components/mini-footer"
@@ -6,7 +6,7 @@ import { WhatsAppButton } from "@/components/whatsapp-button"
 import { Shield, Clock, Hammer, Recycle, Wrench, CheckCircle2 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Sanierung vom Profi | Momo Entruempelung",
+  title: "Sanierung vom Profi | VA Sanierungen",
   description:
     "Kernsanierung, Teilsanierung, Entkernung & Altbausanierung zum Festpreis. Kostenlose Beratung & Besichtigung. Jetzt unverbindlich anfragen!",
 }
@@ -57,7 +57,7 @@ export default function SanierungPage() {
               style={{ fontFamily: "var(--font-heading)" }}
             >
               Warum{" "}
-              <span style={{ color: "#EFA609" }}>Momo Sanierung</span>?
+              <span style={{ color: "#EF1C23" }}>VA Sanierungen</span>?
             </h2>
             <p className="text-sm text-muted-foreground mt-2 max-w-lg mx-auto">
               Professionelle Sanierung mit Festpreis -- von der Planung bis zur Uebergabe.
@@ -72,7 +72,7 @@ export default function SanierungPage() {
               >
                 <div
                   className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center"
-                  style={{ backgroundColor: "rgba(239,166,9,0.1)", color: "#EFA609" }}
+                  style={{ backgroundColor: "rgba(239,28,35,0.1)", color: "#EF1C23" }}
                 >
                   {b.icon}
                 </div>
